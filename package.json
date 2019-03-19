@@ -1,0 +1,56 @@
+{
+  "name": "turbinize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "bin": {
+    "turbinize": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "nyc mocha --recursive test/**/*.ts",
+    "test-watch": "mocha -R progress --watch --require ts-node/register --watch-extensions ts test/**/*.ts",
+    "build-docs": "parcel build docs-src/index.html --out-dir docs --public-url '.'",
+    "docs": "parcel docs-src/index.html"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "monaco-editor": "^0.16.1",
+    "node-html-parser": "^1.1.12",
+    "stringify-object": "^3.3.0",
+    "style.css": "^1.0.0",
+    "yargs": "^13.2.2"
+  },
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.14.1",
+    "@types/stringify-object": "^3.2.0",
+    "@types/yargs": "^12.0.9",
+    "mocha": "^5.2.0",
+    "normalize.css": "^8.0.1",
+    "nyc": "^13.0.1",
+    "parcel-bundler": "^1.12.2",
+    "prettier": "^1.16.3",
+    "source-map-support": "^0.5.10",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.2.4"
+  },
+  "prettier": {},
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register",
+      "source-map-support/register"
+    ],
+    "reporter": [
+      "json",
+      "html",
+      "text"
+    ]
+  }
+}
