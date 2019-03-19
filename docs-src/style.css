@@ -5,11 +5,10 @@
 
 .editor {
   flex: 1;
-  padding: 1em;
+  height: 500px;
   border: 1px solid #ccc;
 }
 
 .result {
-  padding: 1em;
   flex: 1;
 }

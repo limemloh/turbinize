@@ -10,6 +10,7 @@
     "build": "tsc",
     "test": "nyc mocha --recursive test/**/*.ts",
     "test-watch": "mocha -R progress --watch --require ts-node/register --watch-extensions ts test/**/*.ts",
+    "build-docs-dep": "parcel build ./node_modules/monaco-editor/esm/vs/language/html/html.worker.js --no-source-maps --out-dir docs --public-url '.'",
     "build-docs": "parcel build docs-src/index.html --out-dir docs --public-url '.'",
     "docs": "parcel docs-src/index.html"
   },
@@ -17,10 +18,8 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^2.4.2",
-    "monaco-editor": "^0.16.1",
     "node-html-parser": "^1.1.12",
     "stringify-object": "^3.3.0",
-    "style.css": "^1.0.0",
     "yargs": "^13.2.2"
   },
   "devDependencies": {
@@ -29,7 +28,9 @@
     "@types/node": "^10.14.1",
     "@types/stringify-object": "^3.2.0",
     "@types/yargs": "^12.0.9",
+    "highlight.js": "^9.15.6",
     "mocha": "^5.2.0",
+    "monaco-editor": "^0.16.1",
     "normalize.css": "^8.0.1",
     "nyc": "^13.0.1",
     "parcel-bundler": "^1.12.2",
