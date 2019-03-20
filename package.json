@@ -11,7 +11,7 @@
     "test": "nyc mocha --recursive test/**/*.ts",
     "test-watch": "mocha -R progress --watch --require ts-node/register --watch-extensions ts test/**/*.ts",
     "build-docs-dep": "parcel build ./node_modules/monaco-editor/esm/vs/language/html/html.worker.js --no-source-maps --out-dir docs --public-url '.'",
-    "build-docs": "parcel build docs-src/index.html --out-dir docs --public-url '.'",
+    "build-docs": "parcel build docs-src/index.html --out-dir docs --public-url '.' --no-source-maps",
     "docs": "parcel docs-src/index.html"
   },
   "author": "",

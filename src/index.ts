@@ -19,15 +19,19 @@ export function turbinizeHTMLString(
 export function turbinizeHTMLAst(
   opt: TurbinizeOptions,
   html: ReturnType<typeof parse>
-): string {
+) {
   if (html instanceof TextNode) {
+    if (html.rawText.trim() === "") {
+      return undefined;
+    }
     return `"${html.text}"`;
   }
 
   const children = html.childNodes
     .map(turbinizeHTMLAst.bind(undefined, opt))
+    .filter(a => a !== undefined)
     .join(", ");
-  const hasChild = html.childNodes.length > 0;
+  const hasChild = children.length > 0;
   const childString = hasChild ? `[${children}]` : "";
 
   const hasPrefix = opt.elementNamespace === undefined;
