@@ -1,5 +1,5 @@
 import "normalize.css/normalize.css";
-import "./style.css";
+import "./style.scss";
 import "highlight.js/styles/vs.css";
 import * as monaco from "monaco-editor";
 import * as hljs from "highlight.js";
@@ -8,6 +8,8 @@ import { turbinizeHTMLString } from "./../src";
 
 const result = document.getElementById("result");
 const error = document.getElementById("error");
+const editorContainer = document.getElementById("editor-container");
+const namespace = <HTMLInputElement>document.getElementById("namespace");
 
 // @ts-ignore
 self.MonacoEnvironment = {
@@ -19,11 +21,9 @@ self.MonacoEnvironment = {
   }
 };
 
-const editorContainer = document.getElementById("editor-container");
-
 const initialCode = `<div>
   <h1>My Blog</h1>
-  <p>Lorem ipsum<p>
+  <p>Lorem ipsum</p>
 </div>
 `;
 
@@ -31,10 +31,15 @@ const editor = monaco.editor.create(editorContainer, {
   value: initialCode,
   language: "html"
 });
+editor.onDidChangeModelContent(update);
+namespace.addEventListener("input", update);
 
 function update() {
   try {
-    result.innerText = turbinizeHTMLString(editor.getValue());
+    const tscode = turbinizeHTMLString(editor.getValue(), {
+      elementNamespace: namespace.value !== "" ? namespace.value : undefined
+    });
+    result.innerText = tscode;
     hljs.highlightBlock(result);
     error.innerText = "";
   } catch (e) {
@@ -42,5 +47,4 @@ function update() {
   }
 }
 
-editor.onDidChangeModelContent(update);
 update();
